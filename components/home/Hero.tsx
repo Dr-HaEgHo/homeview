@@ -9,7 +9,7 @@ const Hero = () => {
         </div>
       <div className="w-full aspect-[1.9] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 px-4 md:px-0">
         <div className='w-full h-full flex flex-col justify-center items-center gap-6'>
-          <h2 className='text-xl text-white'>Invest in Dubai With</h2>
+          <h2 className='text-xl ls25 text-white'>INVEST IN DUBAI WITH</h2>
           <p className='text-6xl text-white font-semibold'>Home View Dubai Real Estate</p>
         </div>
       </div>

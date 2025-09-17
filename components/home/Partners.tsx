@@ -10,8 +10,8 @@ const Partners = () => {
         <div className="mt-[30px] flex flex-col items-center justify-center">
           <SectionHeader title="Partners with Leading Real Estate Developers in UAE" />
           <div className="w-full flex items-center justify-between my-[70px]">
-            {partners.map((item) => (
-              <div className="w-[100px] h-[100px]">
+            {partners.map((item, idx: number) => (
+              <div key={idx} className="w-[100px] h-[100px]">
                 <Image src={item.image} alt="partner logo"  className="w-full h-full object-cover"/>
               </div>
             ))}

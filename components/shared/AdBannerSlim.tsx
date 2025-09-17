@@ -1,9 +1,29 @@
-import React from 'react'
+import React from "react";
+import Button from "./Button";
 
 const AdBannerSlim = () => {
   return (
-    <div>AdBannerSlim</div>
-  )
-}
+    <div className="w-full">
+      <div className="container bg-primary rounded-lg !px-[34px] py-5">
+        <div className="w-full flex items-center justify-between ">
+          <div className="flex flex-col items-start gap-[10px]">
+            <h4 className="text-white text-xl font-semibold">
+              Don’t miss a beat of Dubai’s Property Sector
+            </h4>
+            <p className="text-white text-sm font-normal">
+              Sign up to our newsletter and receive monthly round-ups including market updates, news articles, and expert insights.
+            </p>
+          </div>
 
-export default AdBannerSlim
+          <Button
+            title="Subscribe now"
+            theme="secondary"
+            className="text-base !py-[10px] !px-9 !rounded-[6px]"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdBannerSlim;

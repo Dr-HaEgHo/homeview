@@ -7,6 +7,9 @@
   --primary: #162D3E;
   --secondary: #E98A10;
   --accent: #f6f6f6;
+  --accent2: #D9D9D9;
+  --accent3: #78736E;
+  --card-title: #4A5C6A;
   --section-header: #1E1E1E
 }
 
@@ -16,6 +19,9 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-accent2: var(--accent2);
+  --color-accent3: var(--accent3);
+  --color-card-title: var(--card-title);
   --color-section-header: var(--section-header);
   --font-sans: var(--font-urbanist);
   --font-mono: var(--font-urbanist);
@@ -45,5 +51,13 @@ body {
 }
 
 .hoverActiveScale2 {
-  @apply transition duration-200 transform hover:scale-[1.08] active:scale-[1];
+  @apply transition duration-200 cursor-pointer transform hover:scale-[1.08] active:scale-[1];
+}
+
+.hoverActiveGrey {
+  @apply cursor-pointer hover:bg-accent active:bg-accent2 transition duration-300;
+}
+
+.ls25{
+  letter-spacing: 0.25em;
 }
