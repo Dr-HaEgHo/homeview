@@ -11,13 +11,13 @@ const Footer = () => {
     <div className="w-full bg-primary !py-10">
       <div className="container">
         {/* LOGO */}
-        <div>
-          <Image src={logo} alt="Logo" width={150} height={50} />
+        <div className="w-[100px] sm:w-[120px] md:w-[150px] h-[50px]">
+          <Image src={logo} alt="Logo" className="w-full" width={150} height={50} />
         </div>
 
         {/* LINKS */}
         <div className="!mt-4 flex flex-col md:flex-row md:gap-0 justify-between">
-          <div className="w-[32%]">
+          <div className="w-full md:w-[32%]">
             <p className="text-white text-base font-medium">
               You can receive news and information directly to your inbox{" "}
             </p>
@@ -27,7 +27,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="w-[52%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-10">
+          <div className="w-full md:w-[52%] max-md:mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-10">
             <div className="w-full flex flex-col gap-5">
               <h3 className="text-white font-semibold text-base mb-[6px]">
                 Quick Links
@@ -61,21 +61,21 @@ const Footer = () => {
 
               <div className="flex gap-4">
                 <Mail size={16} color="#fff" />
-                <p className="text-white text-sm">hello@honeviewdubai.com</p>
+                <p className="text-white text-sm">hello@homeviewdubai.com</p>
               </div>
             </div>{" "}
           </div>
         </div>
 
         {/* NEWSLETTER */}
-        <div className="!mt-10 flex items-center justify-between">
+        <div className="!mt-10 flex max-sm:flex-col items-center justify-between">
           <div className="w-full ">
             <p className="text-[#d2d2d2] text-sm">
               Copyright 2025, SmartHomes All Rights Reserved
             </p>
           </div>
           <div className="flex items-center">
-            <p className="text-white text-base whitespace-nowrap mr-5">
+            <p className="hidden md:flex text-white text-base whitespace-nowrap mr-5">
               Social Links:
             </p>
             <div className="flex items-center gap-[14px]">

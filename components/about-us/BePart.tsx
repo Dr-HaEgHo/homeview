@@ -5,12 +5,21 @@ const BePart = () => {
   return (
     <div className="w-full my-10">
       <div className="container">
-        <div className="w-full grid grid-cols-2 items-center gap-[74px]">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 items-center gap-[74px]">
           {/* CONTENT */}
-          <div className="w-[90%] flex flex-col items-start justify-start">
-            <h2 className="text-section-header text-[40px] font-semibold leading-[40px]">
+          <div className="w-full md:w-[90%] flex flex-col items-start justify-start">
+            <h2 className="text-section-header max-md:text-center text-[30px] md:text-[40px] font-semibold leading-[40px]">
               Be part of something bigger than yourself
             </h2>
+
+            {/* MOBILE IMAGE */}
+              <div className="block md:hidden mt-2 w-full aspect-[1.6] rounded-lg bg-accent2 overflow-hidden">
+            {/* <Image
+              src={blog.image}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+            /> */}
+          </div>
             <span className="text-section-header text-sm font-normal mt-4">
               True success isn’t just about doing well in business, it also
               involves making a positive impact in our local communities. We
@@ -34,8 +43,11 @@ const BePart = () => {
             /> */}
           </div>
 
+
+
           {/* IMAGE */}
-          <div className="w-full aspect-[1.6] rounded-lg bg-accent2 overflow-hidden">
+
+          <div className="hidden md:block w-full aspect-[1.6] rounded-lg bg-accent2 overflow-hidden">
             {/* <Image
               src={blog.image}
               alt={blog.title}

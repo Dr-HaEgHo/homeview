@@ -33,7 +33,7 @@ const Nav = () => {
                 style={{
                   borderBottomWidth: filter === item.route ? "2px" : "0px"
                 }}
-                className='py-[34px] px-12 hoverActiveGrey border-secondary'><p style={{
+                className='py-3 md:py-[34px] px-3 md:px-12 hoverActiveGrey border-secondary'><p style={{
                   fontWeight: filter === item.route ? "semibold" : "medium"
                 }} className='text-base text-section-header'>{item.name}</p></li>
               ))

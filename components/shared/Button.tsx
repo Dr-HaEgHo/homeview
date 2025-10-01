@@ -23,7 +23,7 @@ const Button: React.FC<CtaButtonProps> = ({
   className = "",
 }) => {
   const base =
-    "flex items-center gap-2 !px-4 !py-2 rounded-full transition-colors duration-200 !font-medium text-base hoverActiveScale2";
+    "flex items-center gap-2 !px-4 !py-2 rounded-full transition-colors duration-200 !font-medium text-base cursor-pointer";
 
   const themeColors: Record<Theme, { bg: string; text: string; border: string }> = {
     white: {

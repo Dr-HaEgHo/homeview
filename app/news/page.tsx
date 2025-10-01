@@ -15,7 +15,7 @@ const Page = () => {
       <FeaturedBlog />
       <div className="container">
 
-        <div className="w-full grid grid-cols-4 gap-6 mb-[50px]">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-[50px]">
           {blogs.map((blog, idx: number) => (
             <BlogCard
               key={idx}
@@ -28,7 +28,7 @@ const Page = () => {
 
         <AdBannerSlim/>
 
-        <div className="w-full grid grid-cols-4 gap-6 my-[50px]">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 my-[50px]">
           {newBlogs.map((blog, idx: number) => (
             <BlogCard
               key={idx}

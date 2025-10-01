@@ -13,7 +13,7 @@ const Testimonials = () => {
             subtitle="Hear from our satisfied clients and their success stories with First Call Real Estate."
             gap={10}
           />
-          <div className="w-full grid grid-cols-4 mt-10 mb14 gap-6">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-10 mb14 gap-6">
             {testimonials.map((item, idx: number) => (
               <div
                 key={idx}

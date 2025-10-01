@@ -5,7 +5,7 @@ const Metrics = () => {
   return (
     <div className="w-full">
       <div className="container">
-        <div className="w-[70%] mx-auto flex items-center justify-between mt-[110px] my-[50px]">
+        <div className="w-full md:w-[70%] mx-auto flex flex-col md:flex-row items-center justify-between md:mt-[110px] my-4 md:my-[50px]">
           {metrics.map((metric, idx: number) => (
             <div
               key={idx}

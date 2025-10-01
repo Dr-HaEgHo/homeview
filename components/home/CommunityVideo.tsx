@@ -22,7 +22,7 @@ const CommunityVideo = () => {
             subtitle="A community without compromise, Bay Ghantoot is a stunning beachside development nestled between Abu Dhabi and Dubai, in the heart of Ghantoot. This exclusive enclave features Gemini villas and townhouses walking distance from the beach, offering a flexible payment plan for an unparalleled living experience."
           />
           {/* Use an iframe to embed a YouTube video instead of the video tag */}
-          <div className="w-[90%] mx-auto bg-accent rounded-[10px] overflow-hidden aspect-[1.85] mt-[30px] object-cover">
+          <div className="w-full md:w-[90%] mx-auto bg-accent rounded-[10px] overflow-hidden aspect-[1.85] mt-[30px] object-cover">
             <iframe
               // width="1208"
               // height="653"

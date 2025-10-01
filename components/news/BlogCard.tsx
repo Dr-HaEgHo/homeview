@@ -18,7 +18,7 @@ const BlogCard: FC<props> = ({ title, date, image }) => {
         />
       </div>
       <div>
-        <h3 className="text-section-header text-lg font-bold mt-[18px] mb-[8px]">
+        <h3 className="text-section-header text-base lg:text-lg font-bold mt-[18px] mb-[8px]">
           {title}
         </h3>
         <p className="text-section-header text-sm font-normal">{date}</p>

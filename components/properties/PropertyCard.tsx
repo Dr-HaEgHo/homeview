@@ -1,9 +1,12 @@
+"use client"
 import { Bath, BedDouble, CarFront } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import React from "react";
 import Button from "../shared/Button";
+import { useRouter } from "next/navigation";
 
 interface PropertyCardProps {
+  id:string;
   image: StaticImageData;
   featured?: boolean;
   tags?: string[];
@@ -17,6 +20,7 @@ interface PropertyCardProps {
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({
+  id,
   image,
   featured = false,
   tags = [],
@@ -28,10 +32,13 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
   garages,
   currency = "AED",
 }) => {
+
+  const router = useRouter();
+
   return (
     <div className="bg-white rounded-md border border-[#E5E5E5] overflow-hidden w-full max-w-[340px]">
       <div className="relative w-full h-[180px]">
-        <Image src={image} alt={title} className="object-cover w-full h-full" />
+        <Image src={image} alt={title} width={1024} height={1024} className="object-cover w-full h-full" />
         <div className="absolute top-3 left-3 flex gap-2">
           {featured && (
             <span className="bg-secondary text-white text-xs font-semibold px-3 py-1 rounded">
@@ -89,7 +96,9 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
 
 
           {/* BUTTON */}
-          <Button title="view" theme="accent" className="!shadow-none !rounded" />
+          <Button title="view" onClick={() => {
+            router.push(`/properties/${id}`);
+          }} theme="accent" className="!shadow-none !rounded" />
         </div>
       </div>
     </div>

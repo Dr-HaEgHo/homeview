@@ -27,9 +27,9 @@ const SectionHeader: FC<props> = ({
     }} className='w-full mx-auto '>
       {title && <h2 style={{
         marginBottom: `${gap}px`
-      }} className='font-semibold text-3xl'>{title}</h2>}
-      {subtitle && <p className='font-normal text-base'>{subtitle}</p> }
-      {para && <p className='font-normal text-base'>{para}</p> }
+      }} className='!max-md:mb-[10px] font-bold md:font-semibold text-[22px] md:text-3xl'>{title}</h2>}
+      {subtitle && <p className='font-normal text-sm md:text-base'>{subtitle}</p> }
+      {para && <p className='font-normal text-sm md:text-base'>{para}</p> }
       
     </div>
   )

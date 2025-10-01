@@ -5,6 +5,7 @@ import "./globals.css";
 import GlobalContextProvider from "@/context/context";
 import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
+import { GlobalLoader } from "@/components/shared/Load";
 
 // ✅ define a clear variable name
 const urbanist = Urbanist({
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`${urbanist.variable} antialiased`}>
       {/* <body> */}
         <GlobalContextProvider>
+          <GlobalLoader />
           <Navbar />
           {/* <div className="h-screen"></div> */}
           {children}

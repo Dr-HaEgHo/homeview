@@ -8,14 +8,21 @@ const Partners = () => {
     <div className="w-full">
       <div className="container">
         <div className="mt-[30px] flex flex-col items-center justify-center">
-          <SectionHeader title="Partners with Leading Real Estate Developers in UAE" />
-          <div className="w-full flex items-center justify-between my-[70px]">
-            {partners.map((item, idx: number) => (
-              <div key={idx} className="w-[100px] h-[100px]">
-                <Image src={item.image} alt="partner logo"  className="w-full h-full object-cover"/>
-              </div>
-            ))}
-          </div>
+          <SectionHeader gap={0} title="Partners with Leading Real Estate Developers in UAE" />
+        </div>
+        <div className="w-full flex flex-nowrap items-center justify-between gap-4 my-10 md:my-[70px] scrollX">
+          {partners.map((item, idx: number) => (
+            <div
+              key={idx}
+              className="min-w-[70px] min-h-[70px] md:w-[100px] md:h-[100px]"
+            >
+              <Image
+                src={item.image}
+                alt="partner logo"
+                className="w-full object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

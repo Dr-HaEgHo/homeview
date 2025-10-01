@@ -10,18 +10,21 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import AdBannerSlim from "@/components/shared/AdBannerSlim";
 
 export default function Home() {
+  
+
   return (
     <main>
-      <Hero/>
-      <Partners/>
-      <CommunityVideo/>
-      <WhyChoose/>
-      <RedefiningFuture/>
-      <AdBannerSlim/>
-      <WhyChooseUs/>
-      <Testimonials/>
-      <HomeAd/>
-      <FAQs/>
+      <Hero />
+      {/* <button onClick={fetchqlData}>Fetch Data</button> */}
+      <Partners />
+      <CommunityVideo />
+      <WhyChoose />
+      <RedefiningFuture />
+      <AdBannerSlim />
+      <WhyChooseUs />
+      <Testimonials />
+      <HomeAd />
+      <FAQs />
     </main>
   );
 }

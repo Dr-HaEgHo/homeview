@@ -9,8 +9,8 @@ import Image from 'next/image';
 
 const Slider = () => {
   return (
-    <div className='w-full h-full'>
-       <Swiper
+    <div className='w-full h-full bg-yellow-500'>
+       <Swiper 
               spaceBetween={0}
               slidesPerView={1}
               onSlideChange={() => {}}
@@ -20,7 +20,8 @@ const Slider = () => {
               loop={true}
               shortSwipes
               style={{
-                width:"",
+                height: "100%",
+                width:"100%",
                 margin: 'auto',
                 display : "flex",
                 justifyContent:"center",

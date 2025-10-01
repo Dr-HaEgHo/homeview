@@ -5,19 +5,20 @@ import SectionHeader from "../shared/SectionHeader";
 import Input, { MessageBox } from "../home/Input";
 import Button from "../shared/Button";
 import Dropdown, { LabelledDropdown } from "../properties/Dropdown";
-import { Message } from "iconsax-reactjs";
+import { Message, Whatsapp } from "iconsax-reactjs";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  // const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
 
   return (
-    <div className="w-full py-[60px]">
+    <div className="w-full py-10 md:py-[60px]">
       <div className="container">
         <div className="w-full ">
+
           {/* FORM DIV */}
-          <div className="w-[65%] mx-auto py-[70px] px-[50px] border rounded-lg border-[#888] bg-white">
+          <div className="w-full md:w-[65%] mx-auto py-10 md:py-[70px] px-4 md:px-[50px] border rounded-lg border-[#888] bg-white">
             <SectionHeader
               title="Contact Us"
               gap={10}
@@ -25,7 +26,7 @@ const ContactForm = () => {
             />
             <form action="" className="mt-10 flex flex-col gap-6">
               {/* NAME AND EMAIL */}
-              <div className="w-full flex gap-6">
+              <div className="w-full flex max-md:flex-col gap-6">
                 <Input
                   label="First Name"
                   value={firstName}
@@ -43,7 +44,7 @@ const ContactForm = () => {
                   }}
                 />
               </div>
-              <div className="w-full flex gap-6">
+              <div className="w-full flex max-md:flex-col gap-6">
                 <Input
                   label="Email Address"
                   value={firstName}
@@ -71,7 +72,7 @@ const ContactForm = () => {
               <MessageBox
                   label="Message"
                   value={message}
-                  className="w-full text-sm"
+                  className="w-full text-sm !p-0"
                   onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                     setMessage(e.target.value);
                   }}
@@ -81,7 +82,7 @@ const ContactForm = () => {
                 />
 
               <Button
-                title="Send us a message"
+                title="Submit"
                 theme="secondary"
                 className="text-sm !py-5 !px-14 !rounded-[6px] !text-center !justify-center"
               />

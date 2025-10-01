@@ -3,7 +3,7 @@ import Slider from "../home/Slider";
 
 const ContactHero = () => {
   return (
-    <div className="w-full aspect-[2.9] bg-primary flex items-stretch relative overflow-hidden">
+    <div className="w-full aspect-[2.9] min-h-[500px] bg-primary flex items-stretch relative overflow-hidden">
       <div className="w-full h-full z-0 flex items-center justify-center">
         <Slider />
       </div>
@@ -12,12 +12,12 @@ const ContactHero = () => {
           <h2 className="text-base text-center font-bold ls25 text-white">
             CONTACT HOMEVIEW REAL ESTATE
           </h2>
-          <p className="text-2xl text-white text-center font-semibold">
+          <p className="text-lg md:text-2xl text-white text-center font-semibold">
             Need expert advice? Our team of property consultants, marketing specialists, and customer service experts is here to help and guide you to the right support.
           </p>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 

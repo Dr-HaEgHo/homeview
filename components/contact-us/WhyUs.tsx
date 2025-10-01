@@ -5,9 +5,9 @@ import SectionHeader from "../shared/SectionHeader";
 
 const WhyUs = () => {
   return (
-    <div className="w-full bg-accent py-10">
+    <div className="w-full bg-accent py-1 max-md:pb-10 md:py-10">
       <div className="container">
-        <div className='w-full grid grid-cols-4 mt-10 mb14 gap-6' >
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-10 mb14 gap-6' >
           {
             whychoose.map((why, idx: number) => (
               <div key={idx} className='bg-white w-full aspect-[1.15] rounded-lg flex flex-col items-center justify-center py-[42px] px-[26px]'>

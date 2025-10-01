@@ -33,7 +33,7 @@ const WhyChooseUs = () => {
           subtitle="Your trusted partner in finding the perfect property, with unmatched expertise and personalized service."
           gap={10}
         />
-        <div className="w-full grid grid-cols-3 mt-10 mb14 gap-6">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-10 mb14 gap-6">
           {whychoose2.map((why, idx: number) => (
             <div
               key={idx}

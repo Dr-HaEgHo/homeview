@@ -76,7 +76,7 @@ export const MessageBox: React.FC<MessageBoxProps> = ({
         placeholder={placeholder}
         required={required}
         rows={5}
-        className="border border-[#888] rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:border-primary resize-none"
+        className="border border-[#888] rounded-lg max-md:p-2 px-4 py-3 text-gray-700 focus:outline-none focus:border-primary resize-none"
       />
     </div>
   );
