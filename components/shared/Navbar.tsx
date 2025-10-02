@@ -7,6 +7,7 @@ import logo from "@/assets/icons/logo.svg";
 import { usePathname } from "next/navigation";
 import { links } from "@/constants/data";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
+import Link from "next/link";
 
 const Navbar = () => {
   const scrollY = useScrollPosition();
@@ -40,9 +41,9 @@ const Navbar = () => {
         className="w-full h-screen min-h-[600px] bg-white fixed top-0 z-50 transition-all duration-300 md:hidden"
       >
         <div className="w-full flex items-center bg-primary p-4 justify-between">
-          <a href="/">
+          <Link href="/">
             <Image src={logo} alt="Logo" width={100} height={50} />
-          </a>
+          </Link>
           <button
             onClick={toggleNav}
             className="transition duration-200 p-2 md:hidden rounded hover:bg-[rgb(225,225,225,0.2)] active:bg-[rgb(225,225,225,0.3)]"
@@ -79,12 +80,12 @@ const Navbar = () => {
 
       <div className="container ">
         <div className="w-full flex items-center justify-between">
-          <a href="/" className="hidden md:flex">
+          <Link href="/" className="hidden md:flex">
             <Image src={logo} alt="Logo" width={150} height={50} />
-          </a>
-          <a href="/" className="flex md:hidden">
+          </Link>
+          <Link href="/" className="flex md:hidden">
             <Image src={logo} alt="Logo" width={100} height={50} />
-          </a>
+          </Link>
 
           <button
             onClick={toggleNav}

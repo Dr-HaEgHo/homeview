@@ -1,13 +1,11 @@
 "use client";
 import { useParams } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
-import propImg from "@/assets/images/property.png";
 import Image from "next/image";
 import hamza from "@/assets/images/hamza.png";
 import { Calendar, House, Info, Phone, Share2 } from "lucide-react";
 import Button from "@/components/shared/Button";
 import { Whatsapp } from "iconsax-reactjs";
-import { features } from "@/constants/data";
 import { GlobalContext } from "@/context/context";
 import axios from "axios";
 

@@ -2,6 +2,7 @@
 import { newsLinks } from '@/constants/data'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { withSuspense } from '../hoc/WIthSuspense'
 
 
 const Nav = () => {
@@ -45,4 +46,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default withSuspense(Nav, <div>Loading filters...</div>);

@@ -16,6 +16,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/shared/Button";
 import { ArrowRight } from "lucide-react";
 import { GlobalContext } from "@/context/context";
+import { withSuspense } from "@/components/hoc/WIthSuspense";
 
 const priceOptions = [50000, 100000, 250000, 500000, 1000000, 2000000, 5000000];
 const bedOptions = [1, 2, 3, 4, 5];
@@ -24,7 +25,7 @@ const propertyTypeOptions = [
   "Villas",
   "Town Houses",
   "Commercial",
-];
+]; 
 const garageOptions = [0, 1, 2, 3];
 const statusOptions = ["For Sale", "For Rent", "Sold", "Off Plan"];
 
@@ -280,4 +281,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withSuspense(Page, <div>Loading properties...</div>);

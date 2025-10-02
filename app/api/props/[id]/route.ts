@@ -1,11 +1,14 @@
 // app/api/properties/[id]/route.ts
 import mysql from "mysql2/promise";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await context.params; // ✅ resolve the promise
+    const { id } = resolvedParams;
     const connection = await mysql.createConnection({
       host: "127.0.0.1",
       port: 3306,
@@ -16,7 +19,7 @@ export async function GET(
 
     const [rows] = await connection.execute(
       "SELECT * FROM properties WHERE id = ?",
-      [params.id]
+      [id]
     );
 
     await connection.end();

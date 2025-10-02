@@ -1,24 +1,35 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
-import logo from '@/assets/icons/favicon.png'
+import logo from "@/assets/icons/favicon.png";
 import { GlobalContext } from "@/context/context";
+import Lottie from "lottie-react";
+import loader from "@/assets/animations/homeview-loader.json";
+
+export const AnimationDemo = () => {
+  return (
+    <div className="w-40 h-40">
+      <Lottie
+        animationData={loader}
+        loop
+        autoplay
+      />
+    </div>
+  );
+};
 
 const Load = () => {
-
-  const [ dots, setDots] = useState<number>(0);
+  const [dots, setDots] = useState<number>(0);
 
   useEffect(() => {
-    setDots(3)
-  }, [dots])
+    setDots(3);
+  }, [dots]);
 
-
-  
   return (
     <main className="fixed fade top-0 left-0 w-full h-screen bg-blackLoading flex items-center justify-center z-[999999999999999]">
       <div className="flex flex-col gap-4 items-center justify-center z-50">
         <div className="flex items-center flex-col gap-1">
-        <div className="spinning-logo rounded-full flex items-center justify-center text-white font-bold">
+          <div className="spinning-logo rounded-full flex items-center justify-center text-white font-bold">
             {/* <Image 
                 src={require('../assets/icons/logo.svg')}
                 alt="logo"
@@ -34,14 +45,7 @@ const Load = () => {
 
 export default Load;
 
-
 export const LoadButton = () => {
-
-  const [ dots, setDots] = useState<number>(0);
-
-  useEffect(() => {
-  }, [])
-
   return (
     <main className="fade z-40 top-0 right-left w-full  flex items-center justify-center ">
       <div className="flex flex-col gap-4 items-center justify-center z-50">
@@ -59,16 +63,7 @@ export const LoadButton = () => {
   );
 };
 
-
 export const LoadSmallButton = () => {
-
-  const [ dots, setDots] = useState<number>(0);
-
-  useEffect(() => {
-  }, [])
-
-
-  
   return (
     <main className="fade z-40 top-0 right-left w-full  flex items-center justify-center ">
       <div className="flex flex-col gap-4 items-center justify-center z-50">
@@ -86,23 +81,18 @@ export const LoadSmallButton = () => {
   );
 };
 
-
 export const GlobalLoader = () => {
+  const { globalLoading } = useContext(GlobalContext);
 
-  const {globalLoading, setGlobalLoading} = useContext(GlobalContext);
-  
   return (
-    <main className={`${globalLoading ? "modal-bg-open" : "modal-bg-close"}`}> 
+    <main className={`${globalLoading ? "modal-bg-open" : "modal-bg-close"}`}>
       <div className="flex flex-col gap-4 items-center justify-center z-50">
         <div className="flex items-center flex-col gap-1">
-        <div className="spinning-logo rounded-full flex items-center justify-center text-white font-bold">
-            <Image 
-                src={logo}
-                alt="logo"
-                className="w-12 h-12"
-            />
+          <div className="spinnng-logo rounded-full flex items-center justify-center text-white font-bold">
+            {/* <Image src={logo} alt="logo" className="w-12 h-12" /> */}
+            <AnimationDemo />
           </div>
-          <p className="text-primary text-2xl mb-2 ">Please Wait</p>
+          {/* <p className="text-primary text-2xl mb-2 ">Please Wait</p> */}
           {/* <p>{globalLoading === true ? 'true' : 'false'}</p> */}
         </div>
       </div>

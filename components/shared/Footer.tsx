@@ -4,6 +4,7 @@ import Image from "next/image";
 import Subscribe from "./Subscribe";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { links, socialLinks } from "@/constants/data";
+import Link from "next/link";
 // import 
 
 const Footer = () => {
@@ -82,12 +83,12 @@ const Footer = () => {
 
               {
                 socialLinks.map((link, idx: number) => (
-                  <a key={idx} href="#" className="h-[30px] cursor-pointer hoverActiveScale2 w-[30px] border border-white rounded-full flex items-center justify-center">
+                  <Link key={idx} href="#" className="h-[30px] cursor-pointer hoverActiveScale2 w-[30px] border border-white rounded-full flex items-center justify-center">
                     <Image
                     src={link.image}
                       alt={link.name}
                     />
-                  </a>
+                  </Link>
                 ))
               }
             </div>
