@@ -2,12 +2,20 @@ import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
 // Connection pool
+// const pool = await mysql.createConnection({
+//   host: "127.0.0.1",
+//   port: 3306,
+//   user: "root",
+//   password: "Secret@c0d3.",
+//   database: "homeview",
+// });
+
 const pool = await mysql.createConnection({
-  host: "127.0.0.1",
+  host: "localhost",
   port: 3306,
-  user: "root",
-  password: "Secret@c0d3.",
-  database: "homeview",
+  user: "homevie1_admin",
+  password: "Z3gna4k@#$%",
+  database: "homevie1_demo",
 });
 
 export async function GET() {

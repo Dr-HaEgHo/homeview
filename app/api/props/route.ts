@@ -14,12 +14,20 @@ export async function GET(request: Request) {
   const garages = searchParams.get("garages"); // plural for flexibility
 
   try {
+    // const connection = await mysql.createConnection({
+    //   host: "127.0.0.1",
+    //   port: 3306,
+    //   user: "root",
+    //   password: "Secret@c0d3.",
+    //   database: "homeview",
+    // });
+
     const connection = await mysql.createConnection({
-      host: "127.0.0.1",
+      host: "localhost",
       port: 3306,
-      user: "root",
-      password: "Secret@c0d3.",
-      database: "homeview",
+      user: "homevie1_admin",
+      password: "Z3gna4k@#$%",
+      database: "homevie1_demo",
     });
 
     // Build WHERE clause dynamically

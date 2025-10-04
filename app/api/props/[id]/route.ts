@@ -9,12 +9,20 @@ export async function GET(
   try {
     const resolvedParams = await context.params; // ✅ resolve the promise
     const { id } = resolvedParams;
+    // const connection = await mysql.createConnection({
+    //   host: "127.0.0.1",
+    //   port: 3306,
+    //   user: "root",
+    //   password: "Secret@c0d3.",
+    //   database: "homeview",
+    // });
+
     const connection = await mysql.createConnection({
-      host: "127.0.0.1",
+      host: "localhost",
       port: 3306,
-      user: "root",
-      password: "Secret@c0d3.",
-      database: "homeview",
+      user: "homevie1_admin",
+      password: "Z3gna4k@#$%",
+      database: "homevie1_demo",
     });
 
     const [rows] = await connection.execute(
@@ -42,3 +50,4 @@ export async function GET(
     );
   }
 }
+
