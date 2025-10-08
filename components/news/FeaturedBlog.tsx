@@ -2,9 +2,17 @@ import { newsItems } from "@/constants/data";
 import Image from "next/image";
 import React from "react";
 import Button from "../shared/Button";
+import { useRouter } from "next/navigation";
 
-const FeaturedBlog = () => {
-  const blog = newsItems[0];
+interface props {
+  blog: any
+}
+
+const FeaturedBlog = ({blog}) => {
+  // const blog = newsItems[0];
+  const router = useRouter()
+
+  console.log("this is the featured blog :::::::", blog)
 
   return (
     <div className="w-full my-10">
@@ -20,11 +28,13 @@ const FeaturedBlog = () => {
               src={blog.image}
               alt={blog.title}
               className="w-full h-full object-cover"
+              width={1024}
+              height={1024}
             />
           </div>
             <span className="text-section-header text-sm font-normal mt-4">{blog.date}</span>
-            <p className="text-section-header text-base font-normal my-5 md:my-[34px]">{blog.content}</p>
-            <Button title="Continue Reading" variant="outline" theme="secondary" className="!text-section-header !text-base !font-semibold"/>
+            <p className="text-section-header text-base font-normal my-5 md:my-[34px]">{blog.excerpt}</p>
+            <Button onClick={() => window.open(blog.link, "_blank")} title="Continue Reading" variant="outline" theme="secondary" className="!text-section-header !text-base !font-semibold"/>
           </div>
 
           <div className="w-full hidden md:block aspect-[1.7] rounded-lg overflow-hidden">
@@ -32,6 +42,8 @@ const FeaturedBlog = () => {
               src={blog.image}
               alt={blog.title}
               className="w-full h-full object-cover"
+              width={1024}
+              height={1024}
             />
           </div>
         </div>

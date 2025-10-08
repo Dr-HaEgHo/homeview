@@ -19,9 +19,9 @@ export default function Home() {
       <Partners />
       <CommunityVideo />
       <WhyChoose />
-      <RedefiningFuture />
-      <AdBannerSlim />
+      {/* <RedefiningFuture /> */}
       <WhyChooseUs />
+      <AdBannerSlim />
       <Testimonials />
       <HomeAd />
       <FAQs />

@@ -23,11 +23,11 @@ export async function GET(request: Request) {
     // });
 
     const connection = await mysql.createConnection({
-      host: "localhost",
-      port: 3306,
-      user: "homevie1_admin",
-      password: "Z3gna4k@#$%",
-      database: "homevie1_demo",
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
     });
 
     // Build WHERE clause dynamically
@@ -63,7 +63,8 @@ export async function GET(request: Request) {
       values.push(Number(garages));
     }
 
-    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
+    const whereClause =
+      conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
     const [rows] = await connection.execute(
       `SELECT * FROM homeview.properties ${whereClause}`,
@@ -78,6 +79,9 @@ export async function GET(request: Request) {
       data: rows,
     });
   } catch (error: any) {
-    return Response.json({ success: false, message: error.message }, { status: 500 });
+    return Response.json(
+      { success: false, message: error.message },
+      { status: 500 }
+    );
   }
 }

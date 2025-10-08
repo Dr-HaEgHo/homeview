@@ -17,6 +17,7 @@ import Button from "@/components/shared/Button";
 import { ArrowRight } from "lucide-react";
 import { GlobalContext } from "@/context/context";
 import { withSuspense } from "@/components/hoc/WIthSuspense";
+import useAxios from "@/hooks/useFetch";
 
 const priceOptions = [50000, 100000, 250000, 500000, 1000000, 2000000, 5000000];
 const bedOptions = [1, 2, 3, 4, 5];
@@ -25,34 +26,23 @@ const propertyTypeOptions = [
   "Villas",
   "Town Houses",
   "Commercial",
-]; 
+];
 const garageOptions = [0, 1, 2, 3];
 const statusOptions = ["For Sale", "For Rent", "Sold", "Off Plan"];
 
 const Page = () => {
   const router = useRouter();
   const search = useSearchParams();
-  // const city = search.get("city");
-  // const type = search.get("type");
-  // const minPrice = search.get("minPrice");
-  // const maxPrice = search.get("maxPrice");
-  // const bedrooms = search.get("bedrooms");
-  // const location = search.get("location");
-  // const garages = search.get("garages");
 
   const { globalLoading, setGlobalLoading } = useContext(GlobalContext);
+  // const { error, loading, data, refetch } = useAxios('/api/prop'); //useAxios("/api/props");
 
   const [properties, setProperties] = useState<any | null>(null);
   const [types, setTypes] = useState<any | null>(null);
 
   const handleSelect = (name: string, val: string) => {
-    // Clone current params so we don't mutate directly
     const params = new URLSearchParams(search.toString());
-
-    // Set or update param
     params.set(name, val);
-
-    // Push new URL
     router.push(`?${params.toString()}`);
   };
 
@@ -67,7 +57,6 @@ const Page = () => {
       setGlobalLoading && setGlobalLoading(false);
 
       if (!res.data || !res.data.length) return;
-      // console.log("the data:::::::",res.data[0]);
     } catch (err: any) {
       setGlobalLoading && setGlobalLoading(false);
       console.error("Error fetching data:::::::::::", err.message);
@@ -93,7 +82,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchProperties(search.toString());
-    fetchTypes();
+    // fetchTypes();
   }, []);
 
   return (
@@ -169,7 +158,7 @@ const Page = () => {
       </div>
 
       {/* PROPERTIES LIST */}
-      <div className="w-full">
+      <div className="w-full mb-6">
         <div className="container">
           <div className="w-full">
             {/* HEADERS */}
@@ -196,7 +185,7 @@ const Page = () => {
                 No properties found
               </div>
             ) : (
-              <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-[30px]">
+              <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-6 mt-[30px]">
                 {properties.slice(0, 8).map((item: any) => (
                   <PropertyCard
                     id={item.id}
@@ -204,19 +193,19 @@ const Page = () => {
                     image={item.images[0]}
                     featured={item.featured}
                     tags={item.tags}
-                    title={item.title}
-                    subtitle={item.subtitle}
+                    title={item.project}
+                    subtitle={item.about_project}
                     beds={item.beds}
                     baths={item.baths}
                     garages={item.garages}
-                    price={item.price}
+                    price={item.launch_price}
                     currency={item.currency}
                   />
                 ))}
               </div>
             )}
 
-            <div className="w-full my-[50px] ">
+            {/* <div className="w-full my-[50px] ">
               <div className="w-full flex flex-col gap-[50px]">
                 <SubsectionHeader
                   title="Property types available"
@@ -236,14 +225,16 @@ const Page = () => {
                     />
                   ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
-      <AdBannerSlim />
+      <div className="contatiner">
+        <AdBannerSlim />
+      </div>
 
-      <div className="w-full">
+      <div className="w-full ">
         <div className="container">
           <div className="w-full pb-10">
             {/* CARD LISTINGS */}
@@ -254,21 +245,20 @@ const Page = () => {
                 No properties found
               </div>
             ) : (
-              <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-[30px]">
+              <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-6 mt-[30px]">
                 {properties.slice(8).map((item: any) => (
                   <PropertyCard
-                  
                     id={item.id}
                     key={item.id}
                     image={item.images[0]}
                     featured={item.featured}
                     tags={item.tags}
-                    title={item.title}
-                    subtitle={item.subtitle}
+                    title={item.project}
+                    subtitle={item.about_project}
                     beds={item.beds}
                     baths={item.baths}
                     garages={item.garages}
-                    price={item.price}
+                    price={item.launch_price}
                     currency={item.currency}
                   />
                 ))}

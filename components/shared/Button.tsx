@@ -12,6 +12,7 @@ interface CtaButtonProps {
   theme?: Theme;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<CtaButtonProps> = ({
@@ -21,6 +22,7 @@ const Button: React.FC<CtaButtonProps> = ({
   theme = "black",
   onClick,
   className = "",
+  disabled = false,
 }) => {
   const base =
     "flex items-center gap-2 !px-4 !py-2 rounded-full transition-colors duration-200 !font-medium text-base cursor-pointer";
@@ -62,7 +64,7 @@ const Button: React.FC<CtaButtonProps> = ({
   };
 
   return (
-    <button onClick={onClick} className={clsx(base, variants[variant], className)}>
+    <button disabled={disabled} onClick={onClick} className={clsx(base, variants[variant], className)}>
       {icon && <span className="flex items-center">{icon}</span>}
       <span>{title}</span>
     </button>

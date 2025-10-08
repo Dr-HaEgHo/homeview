@@ -2,9 +2,12 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { slides } from '@/constants/data'
 import React from 'react'
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/autoplay';
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Autoplay, EffectFade } from "swiper/modules";
 import Image from 'next/image';
 
 const Slider = () => {
@@ -17,6 +20,7 @@ const Slider = () => {
               onSwiper={(swiper) => {console.log(swiper)}}
               autoplay={{ delay: 3000 }}
               effect='fade'
+              modules={[Autoplay, EffectFade]}
               loop={true}
               shortSwipes
               style={{

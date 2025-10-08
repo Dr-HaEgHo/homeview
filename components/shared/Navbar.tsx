@@ -41,8 +41,8 @@ const Navbar = () => {
         className="w-full h-screen min-h-[600px] bg-white fixed top-0 z-50 transition-all duration-300 md:hidden"
       >
         <div className="w-full flex items-center bg-primary p-4 justify-between">
-          <Link href="/">
-            <Image src={logo} alt="Logo" width={100} height={50} />
+          <Link href="/" >
+            <Image src={logo} alt="Logo" className="!mr" width={100} height={50} />
           </Link>
           <button
             onClick={toggleNav}
@@ -61,7 +61,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={toggleNav}
-                    className="hover:underline hover:underline-offset-4 hover:decoration-2 text-sm text-section-header"
+                    className="hover:underline text-center hover:underline-offset-4 hover:decoration-2 text-sm text-section-header"
                   >
                     {link.name}
                   </a>
@@ -95,23 +95,24 @@ const Navbar = () => {
           </button>
 
           <div className="hidden md:flex items-center gap-9">
-            <ul className="hidden md:flex items-center gap-8">
+            <ul className="hidden md:flex items-center gap-3 lg:gap-8">
               {links.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
                     className="hover:underline hover:underline-offset-4 hover:decoration-2 text-sm"
                   >
-                    {link.name}
+                    <p className="text-center">{link.name}</p>
                   </a>
                 </li>
               ))}
             </ul>
             <Button
-              title="+971 4 529 2121"
+              title="Call Us"
               theme="white"
               icon={<Phone fontVariant={"bold"} size={18} />}
               variant="bold"
+              onClick={() => window.location.href = "tel:+971557303207"}
             />
           </div>
         </div>

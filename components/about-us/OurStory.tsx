@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Button from "../shared/Button";
+import story from "@/assets/images/story.png";
 
 const OurStory = () => {
   return (
@@ -10,11 +11,11 @@ const OurStory = () => {
           
           {/* IMAGE DESKTOP*/}
           <div className="hidden md:block w-full aspect-[1.6] rounded md:rounded-lg bg-accent2 overflow-hidden">
-            {/* <Image
-              src={blog.image}
-              alt={blog.title}
+            <Image
+              src={story}
+              alt={"our story"}
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
 
 
@@ -26,11 +27,11 @@ const OurStory = () => {
 
             {/* IMAGE MOBILE*/}
           <div className="block md:hidden w-full aspect-[1.6] rounded mt-2 md:rounded-lg bg-accent2 overflow-hidden">
-            {/* <Image
-              src={blog.image}
-              alt={blog.title}
+            <Image
+              src={story}
+              alt={"our story"}
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
             <span className="text-section-header text-sm font-normal mt-4">
               Home View Dubai Real Estate specializes in off-plan properties and

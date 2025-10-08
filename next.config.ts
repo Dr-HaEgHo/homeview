@@ -10,6 +10,18 @@ module.exports = {
         port: "",
         pathname: "/dn7uvrxer/image/**",
       },
+      {
+        protocol: "https",
+        hostname: "picsum.photos",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "new-projects-media.propertyfinder.com",
+        port: "",
+        pathname: "/project/**", 
+      },
     ],
   },
 };

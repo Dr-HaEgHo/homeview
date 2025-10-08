@@ -1,13 +1,34 @@
 "use client";
 import { useParams } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import hamza from "@/assets/images/hamza.png";
-import { Calendar, House, Info, Phone, Share2 } from "lucide-react";
+import {
+  Calendar,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Info,
+  Phone,
+  Share2,
+} from "lucide-react";
 import Button from "@/components/shared/Button";
 import { Whatsapp } from "iconsax-reactjs";
 import { GlobalContext } from "@/context/context";
 import axios from "axios";
+// import { details } from "@/constants/data";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import floorPlan from "@/assets/icons/floor-plan.svg";
+import check from "@/assets/icons/checkmark.svg";
+import ImageSlider from "@/components/properties/ImageSlider";
+import Modal from "@/components/shared/Modal";
+import ReactMarkdown from "react-markdown";
+// import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const ContactInfo = () => {
   return (
@@ -63,15 +84,19 @@ const ContactInfo = () => {
 
 const Page = () => {
   const { id } = useParams();
+  const swiperRef = useRef<any>(null);
 
   const { setGlobalLoading } = useContext(GlobalContext);
   const [details, setDetails] = useState<any | null>(null);
+  const [plansIdx, setPlansIdx] = useState<number>(0);
+  const [open, setOpen] = useState<boolean>(false);
+  const [imageIdx, setImageIdx] = useState<number | null>(null);
 
   const fetchProperties = async () => {
     setGlobalLoading && setGlobalLoading(true);
     try {
       const res = await axios.get(`/api/props/${id}`);
-      console.log("the details data :::::::",res.data.data);
+      console.log("the details data :::::::", res.data.data);
       setDetails(res.data.data);
       setGlobalLoading && setGlobalLoading(false);
 
@@ -83,17 +108,69 @@ const Page = () => {
     }
   };
 
+  // Custom next function
+  const handleNext = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
+
+  // Custom prev function
+  const handlePrev = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
   useEffect(() => {
     fetchProperties();
   }, []);
 
   return (
     <div className="pt-1 lg:pt-10 pb-[70px] mt-[93px]">
+      <Modal isOpen={open} setIsOpen={setOpen}>
+        {imageIdx !== null && details !== null && (
+          <div className="w-full h-full flex items-center gap-4 justify-between p-5">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center hoverActiveBlack">
+              <ChevronLeft
+                style={{
+                  display: imageIdx === 0 ? "none" : "flex",
+                }}
+                onClick={handlePrev}
+                size={60}
+                color="#fff"
+              />
+            </div>
+            <div className="w-[80%] h-full rounded-lg overflow-hidden">
+              <Image
+                src={details.images[imageIdx !== null ? imageIdx : 0]}
+                alt="property"
+                className="w-full h-auto"
+                width={1024}
+                height={1024}
+              />
+            </div>
+            <div className="w-14 h-14 rounded-full flex items-center justify-center hoverActiveBlack">
+              <ChevronRight
+                onClick={handleNext}
+                style={{
+                  display:
+                    imageIdx === details.images.length - 1 ? "none" : "flex",
+                }}
+                size={60}
+                color="#fff"
+              />
+            </div>
+          </div>
+        )}
+      </Modal>
       <div className="container">
         {details === null ? (
           <div className="w-full h-[600px] bg-accent flex flex-col items-center justify-center">
-            <Info size={124} color="#78736e"/>
-            <p className="text-lg text-accent3 text-center">The Property you have requested has either been removed <br /> or doesnt exist</p>
+            <Info size={124} color="#78736e" />
+            <p className="text-lg text-accent3 text-center">
+              This Property has either been removed <br /> or doesnt exist
+            </p>
           </div>
         ) : (
           <div className="w-full flex max-lg:flex-col items-start gap-10">
@@ -101,17 +178,18 @@ const Page = () => {
             <div className="w-full lg:w-[43%] lg:sticky top-[133px]">
               {/* IMAGES */}
               <div className="w-full">
-                <div className="w-full aspect-[1.2] bg-accent rounded-md overflow-hidden">
-                  <Image
-                    src={details?.images[0]}
-                    alt={details?.images[0]}
-                    width={1024}
-                    height={1024}
-                    className="w-full h-full object-cover"
+                <div className="w-full max-h-[500px] max-lg:mt-6 aspect-[1.2] bg-accent rounded-md overflow-hidden">
+                  <ImageSlider
+                    setImage={setImageIdx}
+                    images={details.images}
+                    setIsOpen={setOpen}
+                    prev={handleNext}
+                    next={handleNext}
+                    refObj={swiperRef}
                   />
                 </div>
                 <p className="text-card-title text-sm font-normal mt-5">
-                  1 of 7
+                  {imageIdx + 1} of {details.images.length}
                 </p>
               </div>
 
@@ -123,103 +201,287 @@ const Page = () => {
             {/* RIGHT SIDE */}
             <div className="w-full lg:w-[54%]">
               <div className="w-full">
-                <h3 className="text-section-header text-3xl font-semibold mb-8">
-                  AED {details.price.toLocaleString()} PA
-                </h3>
-                <p className="text-section-header leading-[16px] text-base font-semibold mb-2">
-                  Vacant Now | Brand New | Bright and Spacious
-                </p>
-                <p className="text-section-header capitalize leading-[16px] text-base font-semibold">
-                  {details?.title.toString().split("-").join(" ")}
-                </p>
+                {/* HEADER */}
+                <div className="w-full border-b border-[#f3f3f3] pb-2 mb-3 md:pb-4 md:mb-6">
+                  <h3 className="text-section-header text-3xl font-semibold mb-7">
+                    {details.project}
+                  </h3>
+                  <p className="text-section-header leading-[16px] text-xl font-semibold mb-4">
+                    Launch Price {details.launch_price}
+                  </p>
+                  <p className="text-section-header capitalize leading-[16px] text-xs font-normal">
+                    Prices, availability, and purchase conditions may change
+                    frequently. Contact a representative for the latest
+                    availability and pricing.
+                  </p>
+                </div>
 
-                {/* BASICS */}
-                <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-x-8 mt-7">
-                  <div className="w-full flex items-center gap-3 py-[10px] border-b border-[#f3f3f3] mb-[2px]">
-                    <House size={16} color="#4A5C6A" />
-                    <p className="text-section-header text-sm font-normal">
-                      BUA:{" "}
-                      <span className="pl-3 text-card-title font-semibold">
-                        {details.bua} sq.ft
-                      </span>
-                    </p>
-                  </div>
-                  <div className="w-full flex items-center gap-3 py-[10px] border-b border-[#f3f3f3] mb-[2px]">
-                    <House size={16} color="#4A5C6A" />
-                    <p className="text-section-header text-sm font-normal">
-                      Plot:{" "}
-                      <span className="pl-3 text-card-title font-semibold">
-                        {details?.plot} sq.ft
-                      </span>
-                    </p>
-                  </div>
-                  <div className="w-full flex items-center gap-3 py-[10px] border-b border-[#f3f3f3] mb-[2px]">
-                    <House size={16} color="#4A5C6A" />
-                    <p className="text-section-header text-sm font-normal">
-                      Bedroom(s):{" "}
-                      <span className="pl-3 text-card-title font-semibold">
-                        {details?.bedrooms}
-                      </span>
-                    </p>
-                  </div>
-                  <div className="w-full flex items-center gap-3 py-[10px] border-b border-[#f3f3f3] mb-[2px]">
-                    <House size={16} color="#4A5C6A" />
-                    <p className="text-section-header text-sm font-normal">
-                      Bath(s):{" "}
-                      <span className="pl-3 text-card-title font-semibold">
-                        {details?.bathrooms}
-                      </span>
-                    </p>
-                  </div>
-                  <div className="w-full flex items-center gap-3 py-[10px] border-b border-[#f3f3f3] mb-[2px]">
-                    <House size={16} color="#4A5C6A" />
-                    <p className="text-section-header text-sm font-normal">
-                      Garage(s):{" "}
-                      <span className="pl-3 text-card-title font-semibold">
-                        {details?.garages}
-                      </span>
-                    </p>
+                {/* KEY INFORMATION */}
+                <div className="w-full border-b border-[#f3f3f3] pb-2 mb-3 md:pb-4 md:mb-6">
+                  {/* TITLE */}
+                  <h6 className="text-section-header text-lg font-medium mb-5">
+                    Key Information
+                  </h6>
+                  <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-x-8">
+                    {Object.entries(details.key_information).map(
+                      ([key, value], idx: number) => (
+                        <div
+                          key={idx}
+                          className="w-full flex flex-col items-start gap-3 py-[10px]"
+                        >
+                          <p className="text-section-header text-xs font-normal capitalize">
+                            {key.split("_").join(" ")}
+                          </p>
+                          {value && (
+                            <p className="text-section-header text-sm font-medium capitalize">
+                              {value as unknown as string}
+                            </p>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
+
+                {/* Payment Plans */}
+                {details.payment_plans !== null && details.payment_plans.length ? (
+                  <div className="w-full border-b border-[#f3f3f3] pb-7 mb-6">
+                    {/* TITLE */}
+                    <h6 className="text-section-header text-xl font-medium mb-5">
+                      Payment Plans
+                    </h6>
+
+                    {/* TABS */}
+                    {details.payment_plans.length > 1 && (
+                      <div className="w-full flex items-center mb-5">
+                        {details.payment_plans.map((item: any, idx: number) => (
+                          <button
+                            key={idx}
+                            onClick={() => setPlansIdx(idx)}
+                            style={{
+                              borderColor:
+                                plansIdx === idx ? "#e98120" : "#f1f1f1",
+                            }}
+                            className="p-3 border-b-2 border-secondary hoverActiveGrey"
+                          >
+                            {item.option}
+                          </button>
+                        ))}
+                        {/* <button style={{borderColor: "#f1f1f1"}} className="p-3 border-b-2 border-secondary hoverActiveGrey">Option 2</button> */}
+                      </div>
+                    )}
+
+                    <div className="w-full flex items-stretch flex-col md:flex-row">
+                      {details.payment_plans[plansIdx].plan.map(
+                        (item: any, idx: number) => (
+                          <div
+                            key={idx}
+                            className="w-full flex items-center flex-col md:flex-row"
+                          >
+                            <div className="w-full h-full border text-center border-accent4 rounded-lg flex flex-col items-center px-[10px] py-[10px]">
+                              <p className="text-card-title text-lg font-semibold capitalize">
+                                {item.percentage}
+                              </p>
+                              <p className="text-card-title text-sm font-semibold mt-[14px] mb-[10px] capitalize">
+                                {item.stage}
+                              </p>
+                              {item.note && (
+                                <p className="text-card-title  text-sm font-normal capitalize">
+                                  {item.note}
+                                </p>
+                              )}
+                            </div>
+                            {idx !==
+                              details.payment_plans[plansIdx].plan.length -
+                                1 && (
+                              <ChevronRight className="hidden md:block mx-4" />
+                            )}
+                            {idx !==
+                              details.payment_plans[plansIdx].plan.length -
+                                1 && (
+                              <ChevronDown className="block md:hidden mx-4" />
+                            )}
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                ): null}
+
+                {/* PROJECT TIMELINE */}
+                {details.project_timeline !== null && (
+                  <div className="w-full mt-[26px] text-card-title border-b border-[#f3f3f3] pb-7">
+                    <h6 className="text-xl font-semibold mb-4 leading-[22px]">
+                      Project Timeline
+                    </h6>
+                    <div className="w-full bg-accent rounded-[10px] py-5 px-[14px]">
+                      <VerticalTimeline
+                        lineColor="#e98120"
+                        layout="1-column-left"
+                      >
+                        {Object.entries(details.project_timeline).map(
+                          ([keys, value], idx: number) => (
+                            <VerticalTimelineElement
+                              key={idx}
+                              className="vertical-timeline-element--work"
+                              contentStyle={{
+                                background: "transparent",
+                                color: "#4A5C6A",
+                                marginTop: 0,
+                                shadow: "none",
+                              }}
+                              contentArrowStyle={{
+                                borderRight: "7px solid  transparent",
+                              }}
+                              date={value}
+                              iconStyle={{
+                                background: "white",
+                                borderColor: "#e98a10",
+                                borderWidth: 2,
+                                color: "#000",
+                                width: 16,
+                                height: 16,
+                              }}
+                            >
+                              <h3 className="text-card-title text-base font-semibold">
+                                {keys.split("_").join("")}
+                              </h3>
+                            </VerticalTimelineElement>
+                          )
+                        )}
+                      </VerticalTimeline>
+                    </div>
+                  </div>
+                )}
+
+                {/* UNITS */}
+                {details.units !== null && (
+                  <div className="w-full mt-[26px] text-card-title border-b border-[#f3f3f3] mb-7">
+                    <h6 className="text-xl font-semibold mb-4 leading-[22px]">
+                      Units
+                    </h6>
+                    <p className="text-base font-semibold mb-4">
+                      from Developer
+                    </p>
+
+                    <div className="w-full flex flex-col">
+                      {Object.entries(details.units).map(
+                        ([key, value]: [string, any[]] , idx: number) => (
+                          <div
+                            key={idx}
+                            style={{
+                              display: value.length  ? "flex" : "none",
+                            }}
+                            className="w-full flex flex-col mb-4 uppercase"
+                          >
+                            <h6 className="text-sm font-semibold">{key}</h6>
+                            <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-2 mb-4">
+                              {value.map((item: any, idx: number) => (
+                                <div
+                                  key={idx}
+                                  className="w-full flex items-center"
+                                >
+                                  <div className="w-full h-full border text-center border-accent4 rounded-lg flex flex-col items-center px-[10px] py-[10px]">
+                                    <p className="text-card-title text-lg font-semibold capitalize">
+                                      {item.bedrooms} Bed
+                                    </p>
+                                    <p className="text-card-title text-sm font-semibold my-2 capitalize">
+                                      From {item.price_from}
+                                    </p>
+                                    <div className="w-full flex items-center gap-3 pt-1">
+                                      <Image
+                                        src={floorPlan}
+                                        alt={"floor plan"}
+                                        width={20}
+                                        height={20}
+                                        className=""
+                                      />
+                                      <p className="text-card-title  text-sm font-normal capitalize">
+                                        {item.size_range}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* DESCRIPTION */}
-                <div className="w-full mt-[26px] text-card-title border-b border-[#f3f3f3] mb-7">
-                  <h6 className="text-base font-semibold mb-4 leading-[22px]">
-                    Description
-                  </h6>
-                  <p className="desc">
-                    {details?.description}
-                  </p>
-                  <p className="desc">
-                    Broker fee - {details?.brokerFee.toString()} <br /> Security deposit - {details?.securityDeposit}
-                  </p>
-                  <p className="desc"></p>
-                  <p className="desc">
-                    Please call for more information, to arrange a viewing, or
-                    to make an offer.
-                  </p>
-                  <p className="desc !mb-[30px]">
-                    For further details, please drop into our flagship office at
-                    the Gold & Diamond Park – or browse the incredible selection
-                    of properties we maintain at the haus & haus website. Our
-                    agents will be happy to answer any industry-related query
-                    you may have.
-                  </p>
-                </div>
+                {details.about_project !== null && (
+                  <div className="w-full mt-[26px] text-card-title border-b border-[#f3f3f3] pb-7 mb-7">
+                    <h6 className="text-xl font-semibold mb-4 leading-[22px]">
+                      About the project
+                    </h6>
+                    {/* <p className="desc !mb-[30px]">{details.about_project}</p> */}
+                    <article className="prose prose-lg prose-invert max-w-none">
+                      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                        {details.about_project}
+                      </ReactMarkdown>
+                    </article>
+                  </div>
+                )}
 
-                {/* FEATURES */}
-                <div className="w-full text-card-title">
-                  <h6 className="text-base font-semibold mb-4 leading-[22px]">
-                    Features
-                  </h6>
-                  <ul className="w-full grid grid-cols-1 lg:grid-cols-2">
-                    {details?.features.map((feature: string, idx: number) => (
-                      <li key={idx} className="list-disc marker:text-[8px]">
-                        <p className="desc !mb-0">{feature}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {/* LOCATION & NEARBY ATTRACTIONS */}
+                {details.location_nearby_attractions !== null && (
+                  <div className="w-full text-card-title border-[#f3f3f3] pb-7 mb-6">
+                    <h6 className="text-base font-semibold mb-4 leading-[22px]">
+                      Location & Nearby Attractions
+                    </h6>
+                    <ul className="w-full grid grid-cols-1 lg:grid-cols-2 gap-y-2">
+                      {details.location_nearby_attractions.map(
+                        (item: string, idx: number) => (
+                          <li key={idx} className="list-disc marker:text-[8px]">
+                            <p className="desc !mb-0">{item}</p>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+
+                {/* AMENITIES FEATURES */}
+                {details.features !== null && (
+                  <div className="w-full text-card-title border-b border-[#f3f3f3] max-md:px-4 pb-7 mb-6">
+                    <h6 className="text-base font-semibold mb-4 leading-[22px]">
+                      Amenities
+                    </h6>
+                    <ul className="w-full grid grid-cols-1 lg:grid-cols-2 gap-y-2">
+                      {details.features.map((item: string, idx: number) => (
+                        <li key={idx} className="list-disc marker:text-[8px]">
+                          <p className="desc !mb-0">{item}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* AMENITIES FEATURES */}
+                {details.amenities !== null && (
+                  <div className="w-full text-card-title border-b border-[#f3f3f3] pb-7 mb-6">
+                    <h6 className="text-xl font-semibold mb-4 leading-[22px]">
+                      Other Amenities
+                    </h6>
+                    <ul className="w-full grid grid-cols-1 lg:grid-cols-3 gap-y-2">
+                      {details.amenities.map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Image
+                            src={check}
+                            alt={"checkmark"}
+                            width={20}
+                            height={20}
+                            className=""
+                          />
+                          <p className="desc !mb-0">{item}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <div className="w-full bg-white flex lg:hidden sticky bottom-0 left-0 mt-5">

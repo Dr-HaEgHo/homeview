@@ -5,18 +5,22 @@ import React, { useEffect, useState } from 'react'
 import { withSuspense } from '../hoc/WIthSuspense'
 
 
-const Nav = () => {
+interface props {
+  cta: Function;
+}
 
-  // const [ active, setActive ] = useState<string>(filter)
+const Nav = ({cta}) => {
+
+  // const [ active, setActive ] = useState<string>(type)
   const router = useRouter();
   const search = useSearchParams();
-  const filter = new URLSearchParams(search).get("filter");
+  const type = new URLSearchParams(search).get("type");
 
 
   useEffect(() => {
-    if(filter) return;
+    if(type) return;
 
-    router.push(`?filter=all`)
+    router.push(`?type=all`)
   }, [])
 
   return (
@@ -28,14 +32,15 @@ const Nav = () => {
             {
               newsLinks.map((item, idx: number) => (
                 <li onClick={() => {
-                  router.push(`?filter=${item.route}`)
+                  router.push(`?type=${item.route}`)
+                  cta(`type=${item.route}`);
                   // setActive(item.name)
                 }} key={idx} 
                 style={{
-                  borderBottomWidth: filter === item.route ? "2px" : "0px"
+                  borderBottomWidth: type === item.route ? "2px" : "0px"
                 }}
                 className='py-3 md:py-[34px] px-3 md:px-12 hoverActiveGrey border-secondary'><p style={{
-                  fontWeight: filter === item.route ? "semibold" : "medium"
+                  fontWeight: type === item.route ? "semibold" : "medium"
                 }} className='text-base text-section-header'>{item.name}</p></li>
               ))
             }
@@ -46,4 +51,4 @@ const Nav = () => {
   )
 }
 
-export default withSuspense(Nav, <div>Loading filters...</div>);
+export default withSuspense(Nav, <div>Loading types...</div>);

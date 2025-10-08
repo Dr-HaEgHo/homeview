@@ -4,6 +4,10 @@ import ig from "@/assets/icons/ig.svg";
 import wa from "@/assets/icons/wa.svg";
 import yt from "@/assets/icons/yt.svg";
 import heroBg from "@/assets/images/hero-bg.png";
+import hbg1 from "@/assets/images/hbg1.png"
+import hbg2 from "@/assets/images/hbg2.png"
+import hbg3 from "@/assets/images/hbg3.png"
+import hbg4 from "@/assets/images/hbg4.png"
 import mera from "@/assets/icons/mera.svg";
 import mira from "@/assets/icons/mira.svg";
 import damac from "@/assets/icons/damac.svg";
@@ -39,14 +43,20 @@ export const links = [
 ];
 
 export const socialLinks = [
-  { name: "fb", image: fb, link: "/" },
-  { name: "ig", image: ig, link: "/news" },
-  { name: "tiktok", image: tiktok, link: "/properties" },
-  { name: "wa", image: wa, link: "/about-us" },
-  { name: "yt", image: yt, link: "/contact-us" },
+  { name: "fb", image: fb, link: "https://www.facebook.com/share/1EeKqyMh5T/?mibextid=wwXIfr" },
+  { name: "ig", image: ig, link: "https://www.instagram.com/homeviewdubai?igsh=N3l6NmV1azU1NXJp" },
+  { name: "tiktok", image: tiktok, link: "https://www.tiktok.com/@homeviewdubai?_t=ZS-8yJuA214dcL&_r=1" },
+  { name: "wa", image: wa, link: "https://wa.me/0557303207" },
+  { name: "yt", image: yt, link: "https://youtube.com/@homeviewdubai?si=5MMJ0wt9G4Zw4lDl" },
 ];
 
-export const slides = [{ image: heroBg }, { image: heroBg }, { image: heroBg }];
+export const slides = [
+  { image: heroBg }, 
+  { image: hbg1 }, 
+  { image: hbg2 },
+  { image: hbg3 },
+  { image: hbg4 },
+];
 
 export const partners = [
   { image: mira },
@@ -100,6 +110,27 @@ export const metrics = [
   { title: "15%", description: "PROPERTY VALUE GROWTH" },
   { title: "120+", description: "SUCCESSFUL INVESTMENTS" },
   { title: "500+", description: "PROPERTIES SOLD" },
+];
+
+export const priceOptions = [
+  "< 500K AED",
+  "500K - 1M AED",
+  "1M - 5M AED",
+  "5M - 10M AED",
+  "10M - 20M AED",
+  "> 20M AED",
+];
+export const timeline = [
+  "< 3 months",
+  "3 - 6 months",
+  "6 - 12 months",
+  "> 12 months",
+];
+export const propertyTypeOptions = [
+  "Apartments",
+  "Villas",
+  "Town Houses",
+  "Commercial",
 ];
 
 export const testimonials = [
@@ -160,9 +191,9 @@ export const faqItems = [
 
 export const newsLinks = [
   { name: "All", route: "all" },
-  { name: "Blog", route: "blog" },
-  { name: "Podcasts", route: "podcasts" },
-  { name: "Careers", route: "careers" },
+  { name: "Blogs", route: "blog" },
+  { name: "Podcasts", route: "podcast" },
+  { name: "Careers", route: "career" },
 ];
 
 export const newsItems = [
@@ -435,4 +466,219 @@ Vacant now, it is the perfect family home for those seeking comfort and connecti
   image: "Nad Al Sheba Gardens property image",
   createdAt: "2024-09-15T10:00:00Z",
   updatedAt: "2024-09-15T10:00:00Z",
+};
+
+export const dummyProp = {
+  project: 'Selvara Phase 2 By Emaar',
+  launch_price: '6.2M AED',
+  key_information: {
+    location:
+      'Dubai, Dubai Investment Park (DIP), Grand Polo Club and Resort, Selvara 2',
+    property_types: ['Villa'],
+    payment_plan: ['Option 1'],
+    number_of_buildings: 1,
+    government_fee: '4%',
+    delivery_date: 'April 2029',
+    sale_starts: 'November 2, 2025',
+  },
+  payment_plans: [
+    {
+      option: 'Option 1',
+      plan: [
+        {
+          percentage: '10%',
+          stage: 'Down payment',
+          note: 'At sales launch',
+        },
+        {
+          percentage: '70%',
+          stage: 'During construction',
+          note: null,
+        },
+        {
+          percentage: '20%',
+          stage: 'On handover',
+          note: null,
+        },
+      ],
+    },
+    {
+      option: 'Option 2',
+      plan: [
+        {
+          percentage: '10%',
+          stage: 'Down payment',
+          note: 'At sales launch',
+        },
+        {
+          percentage: '70%',
+          stage: 'During construction',
+          note: 'In 35 equal quarterly installments',
+        },
+        {
+          percentage: '20%',
+          stage: 'On handover',
+          note: null,
+        },
+      ],
+    },
+  ],
+  project_timeline: {
+    project_announcement: '-',
+    booking_started: 'November 2, 2025',
+    construction_started: 'November 3, 2025',
+    construction_progress: '0%',
+    expected_completion: 'April 30, 2029',
+  },
+  units: {
+    apartment: [
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+    ],
+    townhouse: [],
+    commercial: [
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+    ],
+    duplex: [],
+    penthouse: [],
+    villa: [
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+      {
+        bedrooms: 4,
+        price_from: '6.2M AED',
+        size_range: '3,638-3,819 sq.ft',
+      },
+    ],
+  },
+  about_project: `
+
+
+**Palace Villas Ostra** by **Emaar Properties** is a prestigious villa community located in **The Oasis, Dubai**. Designed for luxury living, this development offers an exclusive collection of high-end villas with elegant architecture, spacious layouts, and premium finishes.  
+
+Residents can enjoy a harmonious blend of nature and sophistication, with beautifully landscaped surroundings and world-class amenities.<br />
+
+<br />
+
+### **Prime Location**
+
+Nestled in *The Oasis, Dubai*, **Palace Villas Ostra** enjoys a prime location with excellent connectivity to major highways, key business hubs, and lifestyle destinations — ensuring convenience and accessibility for residents.
+
+<br />
+
+## **Amenities**
+
+- Resort-style swimming pools  
+- Fully equipped fitness center  
+- Lush green parks and open spaces  
+- High-end retail outlets and dining options  
+- Exclusive clubhouse and community centers  
+
+<br />
+
+## **Unit Types**
+
+**Palace Villas Ostra** features a selection of luxurious villas with spacious interiors, premium finishes, and modern architectural designs — catering to families seeking upscale living in a serene environment.
+
+<br />
+
+### **Available Villas**
+
+- 4 Bedrooms  
+- 5 Bedrooms  
+- 6 Bedrooms  
+
+<br />
+
+##  **Delivery Date**
+
+The delivery date for **Palace Villas Ostra** is **September 30, 2029**.
+
+<br />
+
+## Starting Price
+
+The starting price for **Palace Villas Ostra** is **AED 13,130,000**.
+
+<br />
+
+**Palace Villas Ostra** by *Emaar Properties* offers an unmatched blend of luxury, exclusivity, and investment potential in one of Dubai’s most sought-after communities.  
+With its prime location, world-class amenities, and elegantly designed villas, this development is perfect for those seeking an exceptional lifestyle in a prestigious setting.
+<br />
+`,
+    
+  location_nearby_attractions: [
+    'Al Maktoum International Airport – 10 minutes',
+    'Dubai Marina – 20 minutes',
+    'Palm Jumeirah – 20 minutes',
+    'Dubai Outlet Mall – 20 minutes',
+    'The Sevens Stadium Cricket Ground – 20 minutes',
+  ],
+  features: [
+    'Clubhouse',
+    'Basketball court',
+    'Banquet hall',
+    'Dog park',
+    'Fitness centre',
+    'Forest landscape',
+    'Lush gardens & parks',
+    'Tennis court',
+    'Volleyball courts',
+    'Community view',
+    'Picnic area',
+  ],
+  amenities: [
+    'Landscaped Gardens',
+    'Gymnasium',
+    'Restaurants',
+    'Indoor Swimming Pool',
+    'CCTV Security',
+    'Children"s Play Area',
+    'Shared Pool',
+  ],
+  images: [
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/RljiP2ryRQtVKRBLB52tW4N4VynY-NUKW0RYkWG__uQ=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/TiF79Jo5MdVm878POM7u7wGPc1sEEo7h66k9reIjn4A=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/WQVD3bnMmhP8kbksvqAC3HsFBqOPQGtLRjpTByF057Q=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/FA7jvQUUSWD_SrzhgrHPQqhL4hEerrFaIEXtVYqIsnQ=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/BVJmRFRwj_r2sCTGUbAh8jn-GUcb6WpliwkxpzoyPDI=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/OBFJ6J_XPl-gVqDjBhb67N6D41gIp7XNaAF5IPZXwuQ=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/gallery/image/KZV_2NX3gFHRfYl0Airs2YUAUg1GtIJRbt-uLKwJ-6o=/original.webp',
+    'https://new-projects-media.propertyfinder.com/project/44e0b87f-cd9f-4061-92a8-85019044555e/master_plan/image/Yrdta8DxV7jlUDXK08-fVSOrxD5g24ilZ9KjThiuUH0=/original.webp',
+  ],
 };

@@ -18,7 +18,7 @@ const AdBannerSlim = () => {
           <Button
             title="Subscribe now"
             theme="secondary"
-            className="text-base !py-[10px] !px-9 !rounded-[6px] max-md:mt-4"
+            className="text-base !py-[10px] whitespace-nowrap !px-9 !rounded-[6px] max-md:mt-4"
           />
         </div>
       </div>

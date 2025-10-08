@@ -1,5 +1,7 @@
+import Image from "next/image";
 import React from "react";
-import Button from "../shared/Button";
+import bigger from "@/assets/images/bigger.png";
+
 
 const BePart = () => {
   return (
@@ -14,11 +16,11 @@ const BePart = () => {
 
             {/* MOBILE IMAGE */}
               <div className="block md:hidden mt-2 w-full aspect-[1.6] rounded-lg bg-accent2 overflow-hidden">
-            {/* <Image
-              src={blog.image}
-              alt={blog.title}
+            <Image
+              src={bigger}
+              alt={"be part of something bigger"}
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
             <span className="text-section-header text-sm font-normal mt-4">
               True success isn’t just about doing well in business, it also
@@ -48,11 +50,11 @@ const BePart = () => {
           {/* IMAGE */}
 
           <div className="hidden md:block w-full aspect-[1.6] rounded-lg bg-accent2 overflow-hidden">
-            {/* <Image
-              src={blog.image}
-              alt={blog.title}
+            <Image
+              src={bigger}
+              alt={"be part of something bigger"}
               className="w-full h-full object-cover"
-            /> */}
+            />
           </div>
         </div>
       </div>

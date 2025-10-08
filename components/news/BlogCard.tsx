@@ -5,16 +5,20 @@ interface props {
   title: string;
   date?: string;
   image: StaticImageData;
+  link: string
 }
 
-const BlogCard: FC<props> = ({ title, date, image }) => {
+const BlogCard: FC<props> = ({ title, date, image, link }) => {
   return (
-    <div className="w-full flex flex-col items-start justify-start">
+    <div onClick={() => {window.open(link, "_blank");
+}} className="w-full flex flex-col items-start justify-start hoverActiveScale">
       <div className="w-full aspect-[1.45] rounded-lg overflow-hidden">
         <Image
           src={image}
           alt="apartments"
           className="w-full h-full object-cover"
+          width={1024}
+          height={1024}
         />
       </div>
       <div>

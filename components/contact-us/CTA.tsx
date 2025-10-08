@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Button from "../shared/Button";
 import { Whatsapp } from "iconsax-reactjs";
@@ -18,6 +19,7 @@ const CTA = () => {
             title="Send us a message"
             theme="secondary"
             className="text-sm !py-5 !px-14 !rounded-[6px]"
+            onClick={() => window.open("https://wa.me/+971557303207", "_blank")}
             icon={<Whatsapp size="16" color="white"/>}
           />
         </div>
