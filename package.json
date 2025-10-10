@@ -9,14 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/client": "^6.16.2",
     "@tailwindcss/typography": "^0.5.19",
     "axios": "^1.12.2",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.2",
     "graphql-request": "^7.2.0",
-    "graphql": "^16.10.0",
-    "graphql-tag": "^2.12.6",
     "iconsax-reactjs": "^0.0.8",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.544.0",
@@ -40,7 +37,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "prisma": "^6.16.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

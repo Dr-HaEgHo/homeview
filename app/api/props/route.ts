@@ -67,9 +67,13 @@ export async function GET(request: Request) {
       conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
 
     const [rows] = await connection.execute(
-      `SELECT * FROM homeview.properties ${whereClause}`,
+      `SELECT * FROM properties ${whereClause}`,
       values
     );
+    // const [rows] = await connection.execute(
+    //   `SELECT * FROM homeview.properties ${whereClause}`,
+    //   values
+    // );
 
     await connection.end();
 
