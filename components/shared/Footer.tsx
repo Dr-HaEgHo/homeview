@@ -79,9 +79,9 @@ const Footer = () => {
         </div>
 
         {/* COPY AND SOCIAL */}
-        <div className="!mt-10 flex max-sm:flex-col items-center justify-between">
+        <div className="!mt-10 flex max-sm:flex-col-reverse max-sm:gap-4 items-center justify-between">
           <div className="w-full ">
-            <p className="text-[#d2d2d2] text-sm">
+            <p className="text-[#d2d2d2] text-sm max-sm:text-center">
               Copyright 2025, SmartHomes All Rights Reserved
             </p>
           </div>

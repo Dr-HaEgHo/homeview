@@ -69,10 +69,11 @@ const Navbar = () => {
               ))}
             </ul>
             <Button
-              title="+971 4 529 2121"
+              title="Call Homeview"
               theme="white"
               icon={<Phone fontVariant={"bold"} size={18} />}
               variant="bold"
+              onClick={() => window.location.href = "tel:+971557303207"}
             />
           </div>
         </div>
@@ -108,7 +109,7 @@ const Navbar = () => {
               ))}
             </ul>
             <Button
-              title="Call Us"
+              title="Call Homeview"
               theme="white"
               icon={<Phone fontVariant={"bold"} size={18} />}
               variant="bold"

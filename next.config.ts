@@ -22,6 +22,18 @@ module.exports = {
         port: "",
         pathname: "/project/**", 
       },
+      {
+        protocol: "https",
+        hostname: "homeviewdubai.com",
+        port: "",
+        pathname: "/blogs/wp-content/uploads/**", 
+      },
+      {
+        protocol: "https",
+        hostname: "www.homeviewdubai.com",
+        port: "",
+        pathname: "/blogs/wp-content/uploads/**", 
+      },
     ],
   },
 };

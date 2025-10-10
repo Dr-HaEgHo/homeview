@@ -13,7 +13,7 @@ const Testimonials = () => {
             subtitle="Hear from our satisfied clients and their success stories with First Call Real Estate."
             gap={10}
           />
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-10 mb14 gap-6">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 mb14 gap-6">
             {testimonials.map((item, idx: number) => (
               <div
                 key={idx}
@@ -29,10 +29,10 @@ const Testimonials = () => {
                     height={1024}
                   />
                 </div>
-                <p className="text-section-header text-sm font-normal text-center">
+                <p className="text-section-header line-clamp-5 text-sm font-normal text-center">
                   {item.text}
                 </p>
-                <p className="text-section-header text-sm font-semibold text-center mt-4 mb-2">
+                <p className="text-section-header  text-sm font-semibold text-center mt-4 mb-2">
                   {item.name}
                 </p>
                 <p className="text-section-header text-sm font-medium text-center">

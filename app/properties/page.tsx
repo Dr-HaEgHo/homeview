@@ -18,6 +18,8 @@ import { ArrowRight } from "lucide-react";
 import { GlobalContext } from "@/context/context";
 import { withSuspense } from "@/components/hoc/WIthSuspense";
 import useAxios from "@/hooks/useFetch";
+import Image from "next/image";
+import empty from "@/assets/icons/empty.svg"
 
 const priceOptions = [50000, 100000, 250000, 500000, 1000000, 2000000, 5000000];
 const bedOptions = [1, 2, 3, 4, 5];
@@ -63,18 +65,18 @@ const Page = () => {
     }
   };
 
-  const fetchTypes = async () => {
-    try {
-      const res = await axios.get("/api/types");
-      console.log(res.data.data);
-      setTypes(res.data.data);
+  // const fetchTypes = async () => {
+  //   try {
+  //     const res = await axios.get("/api/types");
+  //     console.log(res.data.data);
+  //     setTypes(res.data.data);
 
-      if (!res.data || !res.data.length) return;
-      // console.log("the data:::::::",res.data[0]);
-    } catch (err: any) {
-      console.error("Error fetching data:::::::::::", err.message);
-    }
-  };
+  //     if (!res.data || !res.data.length) return;
+  //     // console.log("the data:::::::",res.data[0]);
+  //   } catch (err: any) {
+  //     console.error("Error fetching data:::::::::::", err.message);
+  //   }
+  // };
 
   const fetchOnClick = () => {
     fetchProperties(search.toString());
@@ -88,8 +90,8 @@ const Page = () => {
   return (
     <div className="w-full mt-[93px]">
       {/* FILTERS */}
-      <div className="w-full bg-accent py-3 mb-16">
-        <div className="container">
+      <div className="hidden w-full bg-accent py-3 mb-16">
+        <div className="container ">
           <div className="w-full flex items-center gap-3 flex-nowrap">
             <SearchInput
               onSearch={(val) => {
@@ -158,9 +160,9 @@ const Page = () => {
       </div>
 
       {/* PROPERTIES LIST */}
-      <div className="w-full mb-6">
+      <div className="w-full my-6">
         <div className="container">
-          <div className="w-full">
+          <div className="w-full pt-4">
             {/* HEADERS */}
             <div className="flex flex-col gap-[60px]">
               <SectionHeader
@@ -178,11 +180,10 @@ const Page = () => {
             </div>
 
             {/* CARD LISTINGS */}
-            {properties === null ? (
-              <p>Oops nothing here</p>
-            ) : !properties.length ? (
-              <div className="w-full h-[600px] flex items-center justify-center bg-secondary">
-                No properties found
+            {properties === null ? null : !properties.length ? (
+              <div className="w-full h-[600px] flex flex-col gap-4 items-center justify-center bg-accent">
+                <Image src={empty} alt="empty state" className="w-[100px] md:w-[200px]" />
+                <p>No properties found</p>
               </div>
             ) : (
               <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-6 mt-[30px]">
@@ -230,7 +231,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="contatiner">
+      <div className="contatiner mb-6">
         <AdBannerSlim />
       </div>
 
@@ -239,10 +240,11 @@ const Page = () => {
           <div className="w-full pb-10">
             {/* CARD LISTINGS */}
             {properties === null ? (
-              <p>Oops nothing here</p>
+              null
             ) : !properties.length ? (
-              <div className="w-full h-[600px] flex items-center justify-center bg-secondary">
-                No properties found
+              <div className="w-full h-[600px] flex flex-col gap-4 items-center justify-center bg-accent">
+                <Image src={empty} alt="empty state" className="w-[100px] md:w-[200px]" />
+                <p>No properties found</p>
               </div>
             ) : (
               <div className="w-fit md:w-full max-md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-6 mt-[30px]">

@@ -26,9 +26,11 @@ import floorPlan from "@/assets/icons/floor-plan.svg";
 import check from "@/assets/icons/checkmark.svg";
 import ImageSlider from "@/components/properties/ImageSlider";
 import Modal from "@/components/shared/Modal";
-import ReactMarkdown from "react-markdown";
 // import remarkGfm from "remark-gfm";
+import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import empty from "@/assets/icons/empty.svg"
+import shahriyar from "@/assets/images/shahriyar.png";
 
 const ContactInfo = () => {
   return (
@@ -36,15 +38,15 @@ const ContactInfo = () => {
       <div className="w-full flex items-start justify-between mb-[30px]">
         {/* USER INFO */}
         <div className="flex items-center gap-[14px]">
-          <div className="w-10 lg:w-20 h-10 lg:h-20 rounded-full bg-accent border border-white shadow">
+          <div className="w-10 lg:w-20 h-10 lg:h-20 rounded-full overflow-hidden bg-accent border border-white shadow">
             <Image
               alt="user"
-              src={hamza}
+              src={shahriyar}
               className="w-full h-full object-cover"
             />
           </div>
           <div className="flex flex-col lg:gap-[10px] text-card-title">
-            <h4 className="text-base lg:text-xl font-medium">Hamza Raheem</h4>
+            <h4 className="text-base lg:text-xl font-medium">Shahriyar Ahmed</h4>
             <p className="text-sm lg:text-base font-normal">Speak with agent</p>
           </div>
         </div>
@@ -62,12 +64,14 @@ const ContactInfo = () => {
           theme="secondary"
           icon={<Phone size={14} color="#fff" />}
           className="w-full justify-center max-lg:text-sm lg:!py-[15px]"
+          onClick={() => window.location.href = "tel:+971557303207"}
         />
         <Button
           title="Whatsapp"
           theme="secondary"
           icon={<Whatsapp size={18} color="#fff" />}
           className="w-full justify-center max-lg:text-sm lg:!py-[15px]"
+          onClick={() => window.open("https://wa.me/+971557303207", "_blank")}
         />
       </div>
       <div className="w-full mt-4">
@@ -76,6 +80,7 @@ const ContactInfo = () => {
           theme="primary"
           icon={<Calendar size={18} color="#fff" />}
           className="w-full justify-center max-lg:text-sm lg:!py-[15px]"
+          onClick={() => window.open("https://wa.me/+971557303207", "_blank")}
         />
       </div>
     </div>
@@ -91,6 +96,7 @@ const Page = () => {
   const [plansIdx, setPlansIdx] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
   const [imageIdx, setImageIdx] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchProperties = async () => {
     setGlobalLoading && setGlobalLoading(true);
@@ -100,11 +106,12 @@ const Page = () => {
       setDetails(res.data.data);
       setGlobalLoading && setGlobalLoading(false);
 
-      if (!res.data || !res.data.length) return;
+      // if (!res.data || !res.data.length) return;
       // console.log("the data:::::::",res.data[0]);
     } catch (err: any) {
       setGlobalLoading && setGlobalLoading(false);
-      console.error("Error fetching data:::::::::::", err.message);
+      setError(err.response.data.message);
+      console.log("Error fetching data:::::::::::", err.response.data.message);
     }
   };
 
@@ -165,14 +172,17 @@ const Page = () => {
         )}
       </Modal>
       <div className="container">
-        {details === null ? (
+        {error !== null ? (
           <div className="w-full h-[600px] bg-accent flex flex-col items-center justify-center">
-            <Info size={124} color="#78736e" />
-            <p className="text-lg text-accent3 text-center">
-              This Property has either been removed <br /> or doesnt exist
+            <Image src={empty} alt="empty state" className="w-[100px] md:w-[200px]" />
+            <p className="text-lg text-accent3 font-semibold text-center">
+              Oops Something went wrong!
             </p>
+            {error !== null && (
+              <p className="text-base text-accent3 text-center">{error}</p>
+            )}
           </div>
-        ) : (
+        ) : details === null ? null : (
           <div className="w-full flex max-lg:flex-col items-start gap-10">
             {/* /LEFT SIDE */}
             <div className="w-full lg:w-[43%] lg:sticky top-[133px]">
@@ -244,7 +254,8 @@ const Page = () => {
                 </div>
 
                 {/* Payment Plans */}
-                {details.payment_plans !== null && details.payment_plans.length ? (
+                {details.payment_plans !== null &&
+                details.payment_plans.length ? (
                   <div className="w-full border-b border-[#f3f3f3] pb-7 mb-6">
                     {/* TITLE */}
                     <h6 className="text-section-header text-xl font-medium mb-5">
@@ -306,7 +317,7 @@ const Page = () => {
                       )}
                     </div>
                   </div>
-                ): null}
+                ) : null}
 
                 {/* PROJECT TIMELINE */}
                 {details.project_timeline !== null && (
@@ -366,11 +377,11 @@ const Page = () => {
 
                     <div className="w-full flex flex-col">
                       {Object.entries(details.units).map(
-                        ([key, value]: [string, any[]] , idx: number) => (
+                        ([key, value]: [string, any[]], idx: number) => (
                           <div
                             key={idx}
                             style={{
-                              display: value.length  ? "flex" : "none",
+                              display: value.length ? "flex" : "none",
                             }}
                             className="w-full flex flex-col mb-4 uppercase"
                           >

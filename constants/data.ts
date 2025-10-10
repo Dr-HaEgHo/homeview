@@ -136,26 +136,26 @@ export const propertyTypeOptions = [
 export const testimonials = [
   {
     image: p1, // Replace with actual image import or path
-    text: "Our reputation is built on trust, with thousands of satisfied clients who have chosen us for their real estate needs.",
-    name: "Aisha Al-Farsi",
+    text: "I had an amazing experience with Homeview Dubai. The team was professional, transparent, and extremely helpful throughout my property search. They found me the perfect apartment in Downtown Dubai within my budget. Highly recommend them to anyone looking for a hassle-free real estate experience!",
+    name: "Sarah Ahmed",
     location: "Dubai, Home Owner",
   },
   {
     image: p2,
-    text: "Our reputation is built on trust, with thousands of satisfied clients who have chosen us for their real estate needs.",
-    name: "Aisha Al-Farsi",
+    text: "Homeview Dubai made buying my first home so easy and stress-free. They guided me from the very first viewing to final paperwork. What stood out most was their honesty and knowledge of the Dubai market. I couldn’t be happier with my new villa in Arabian Ranches!",
+    name: "Fatima Al Mansoori",
     location: "Dubai, Home Owner",
   },
   {
     image: p3,
-    text: "Our reputation is built on trust, with thousands of satisfied clients who have chosen us for their real estate needs.",
+    text: "I was relocating to Dubai for work and needed a place quickly. Homeview Dubai not only helped me find a lovely apartment in Business Bay but also handled everything remotely. Their communication was excellent, and the process was super smooth. Thank you for your professionalism!",
     name: "Aisha Al-Farsi",
     location: "Dubai, Home Owner",
   },
   {
     image: p4,
-    text: "Our reputation is built on trust, with thousands of satisfied clients who have chosen us for their real estate needs.",
-    name: "Aisha Al-Farsi",
+    text: "The team at Homeview Dubai truly goes above and beyond! They understood my needs right away and showed me great options across Dubai Marina. Within a week, I had my dream home with a sea view. I’m so grateful for their efficiency and kindness!",
+    name: "Maria Fernandez",
     location: "Dubai, Home Owner",
   },
 ];

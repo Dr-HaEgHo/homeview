@@ -51,6 +51,7 @@ const ImageSlider: FC<props> = ({
           display: "flex",
           justifyContent: "center",
           color: "white",
+          backgroundColor: "transparent",
           gap: 20,
         }}
       >
